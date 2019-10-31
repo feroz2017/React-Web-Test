@@ -14,23 +14,29 @@ class Menu extends React.Component {
             selectedDish:dish
         })
     }
-    renderDish(dish){
-        if(this.state.selectedDish != null){
-            return (
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.alt}></CardImg>
-                    <CardBody> 
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            )
-        }
-        else{
-            return (
-                <div></div>
-            )
-        }
+    renderComments(dish){
+            
+            if(dish!=null){
+                let lists = dish.comments.map(comt =>{
+                    return (
+                        <li>
+                        <div>
+                            <p>{comt.comment}</p>
+                            <p>--{comt.author} {comt.date}</p>
+                        </div>
+                    </li>
+                    )
+                })
+                return(
+                    <div> 
+                        <h4>Comments</h4>
+                        <ul className="list-unstyled">
+                                {lists}
+                        </ul>
+                    </div>  
+                )
+            }
+            
     }
     render(){
         const menu = this.props.dishes.map(dish => {
@@ -56,7 +62,9 @@ class Menu extends React.Component {
                         <div className="col-md-5 m-1">
                         <DishdetailsComponent dish={this.state.selectedDish} selectedDish = {this.state.selectedDish}/>
                         </div>
-                        <div className="col-md-5 m-1"></div>
+                        <div className="col-md-5 m-1">
+                                {this.renderComments(this.state.selectedDish)}
+                        </div>
                     </div>
 
             </div>
