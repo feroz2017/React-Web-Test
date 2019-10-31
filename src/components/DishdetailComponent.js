@@ -5,7 +5,9 @@ class DishDetail extends Component {
 
     render(){
         if(this.props.selectedDish != null){
+            console.log(this.props.dish)
             return (
+               
                 <Card>
                     <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.alt}></CardImg>
                     <CardBody> 
