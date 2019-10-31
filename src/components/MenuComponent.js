@@ -35,7 +35,7 @@ class Menu extends React.Component {
     render(){
         const menu = this.props.dishes.map(dish => {
             return(
-                <div key={dish.id} className='col-12 col-md-5 m-1'>
+                <div key={dish.id} className='col-md-5 m-1'>
                     <Card onClick={()=>this.onDishSelect(dish)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name}>
                             
@@ -53,8 +53,10 @@ class Menu extends React.Component {
                         {menu}
                     </div>
                     <div className="row">
-                        {this.renderDish(this.state.selectedDish)}
-                        <DishdetailsComponent dish={this.state.selectedDish}/>
+                        <div className="col-md-5 m-1">
+                        <DishdetailsComponent dish={this.state.selectedDish} selectedDish = {this.state.selectedDish}/>
+                        </div>
+                        <div className="col-md-5 m-1"></div>
                     </div>
 
             </div>
